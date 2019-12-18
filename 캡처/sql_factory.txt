@@ -1,0 +1,57 @@
+SQL> create table PRODUCT(
+  2                             PDNO number primary key,
+  3                             PDNAME varchar2(10),
+  4                             PDSUBNAME varchar2(10) not null,
+  5                             FACTNO varchar2(5),
+  6  PDDATE date,
+  7  PDCOST number,
+  8  PDPRICE number,
+  9  PDAMOUNT number);
+
+Table created.
+
+SQL> desc PRODUCT
+ Name                                                                                                                                                                          Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------
+ PDNO                                                                                                                                                                          NOT NULL NUMBER
+ PDNAME                                                                                                                                                                                 VARCHAR2(10)
+ PDSUBNAME                                                                                                                                                                     NOT NULL VARCHAR2(10)
+ FACTNO                                                                                                                                                                                 VARCHAR2(5)
+ PDDATE                                                                                                                                                                                 DATE
+ PDCOST                                                                                                                                                                                 NUMBER
+ PDPRICE                                                                                                                                                                                NUMBER
+ PDAMOUNT                                                                                                                                                                               NUMBER
+
+SQL> create table FACTORY(
+  2  FACTNO varchar2(5) primary key,
+  3  FACNAME varchar2(14) not null,
+  4  FACLOC varchar2(13));
+
+Table created.
+
+SQL> desc FACTORY
+ Name                                                                                                                                                                          Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------
+ FACTNO                                                                                                                                                                        NOT NULL VARCHAR2(5)
+ FACNAME                                                                                                                                                                       NOT NULL VARCHAR2(14)
+ FACLOC                                                                                                                                                                                 VARCHAR2(13)
+
+SQL> create table STORE(
+  2  STONO varchar2(5) primary key,
+  3  STONAME varchar2(14) not null,
+  4  PDNO number,
+  5  STAMOUNT number,
+  6  STSALES number,
+  7  STPRICE number);
+
+Table created.
+
+SQL> desc STORE
+ Name                                                                                                                                                                          Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------
+ STONO                                                                                                                                                                         NOT NULL VARCHAR2(5)
+ STONAME                                                                                                                                                                       NOT NULL VARCHAR2(14)
+ PDNO                                                                                                                                                                                   NUMBER
+ STAMOUNT                                                                                                                                                                               NUMBER
+ STSALES                                                                                                                                                                                NUMBER
+ STPRICE                                                                                                                                                                                NUMBER
