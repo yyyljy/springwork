@@ -1,0 +1,12 @@
+[실습3]
+SQL> select job, count(empno)
+  2  from emp
+  3  where hiredate not like '83%'
+  4  group by job
+  5  having count(empno) >= 3;
+
+JOB                COUNT(EMPNO)
+------------------ ------------
+CLERK                         3
+SALESMAN                      4
+MANAGER                       3
