@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg949\deff0\nouicompat\deflang1033\deflangfe1042{\fonttbl{\f0\fnil\fcharset129 \'b8\'bc\'c0\'ba \'b0\'ed\'b5\'f1;}{\f1\fswiss\fcharset0 Malgun Gothic;}{\f2\fswiss\fcharset129 Malgun Gothic;}}
+{\colortbl ;\red0\green0\blue0;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs20\lang18 <<\'c8\'b8\'bf\'f8\'c5\'d7\'c0\'cc\'ba\'ed>>\par
+INSERT INTO TB_MEM(MEM_ID, MEM_NM, MEM_CD, PWD, PWD_HINT, PWD_HINT_ANS, SSN, BIRTH_DT, MALE_FLG, TEL_NO, CELL_NO, ADDR, EMAIL, EMAIL_RCV_FLG, MEM_REG_DTM)      \par
+VALUES('user01', '\'c8\'ab\'b1\'e6\'b5\'bf', 'USR', 'user01', '\'c3\'ca\'b5\'ee\'c7\'d0\'b1\'b3\'b4\'c2?', '\'bc\'ad\'bf\'ef\'c3\'ca\'b5\'ee\'c7\'d0\'b1\'b3', '8010101234567', '19801010', 'F', '02-555-4567', '010-234-4567', '\'bc\'ad\'bf\'ef\'bd\'c3 \'bc\'ad\'c3\'ca\'b1\'b8 \'bc\'ad\'c3\'ca\'b5\'bf \'bc\'ad\'c3\'ca\'be\'c6\'c6\'c4\'c6\'ae 101\'b5\'bf 1001\'c8\'a3', 'abcd@email.com', 'Y', to_char(sysdate, 'YYYYMMDDHH24MISS'))  ; \par
+
+\pard\cf1\f1\fs24\par
+\f2\fs20 -\'c8\'b8\'bf\'f8\'b8\'ed,\'ba\'f1\'b9\'d0\'b9\'f8\'c8\'a3, \'ba\'f1\'b9\'d0\'b9\'f8\'c8\'a3\'c8\'f9\'c6\'ae,\'ba\'f1\'b9\'d0\'b9\'f8\'c8\'a3\'c8\'f9\'c6\'ae\'b4\'e4\'ba\'af,\'c1\'d6\'b9\'ce\'b9\'f8\'c8\'a3,\'bc\'ba\'ba\'b0,\'c1\'d6\'bc\'d2 not null\f1\fs24\par
+\f2\fs20 -\'c1\'d6\'b9\'ce\'b9\'f8\'c8\'a3 unique\par
+-\'c8\'b8\'bf\'f8\'c0\'af\'c7\'fc\'c4\'da\'b5\'e5\'b4\'c2\ldblquote Silver,Gold,VIP,VVIP,Guest\rdblquote  check.\par
+
+\pard\sa200\sl276\slmult1\cf0\f0\par
+\b\fs28 create table TB_MEM(\b0\fs20\par
+   MEM_ID varchar2(15) primary key,\par
+   MEM_NM varchar2(10) not null,\par
+   MEM_CD varchar(10),\par
+   PWD VARCHAR2(20) not null,\par
+   PWD_HINT VARCHAR2(100) not null,\par
+   PWD_HINT_ANS VARCHAR2(100) not null,\par
+   SSN varchar2(13) not null,\par
+   BIRTH_DT date,\par
+   male_flg varchar(1) not null,\par
+   tel_no varchar2(15),\par
+   cell_no varchar2(20),\par
+   addr varchar2(100) not null,\par
+   email varchar2(50),\par
+   email_rcv_flg varchar(1),\par
+   MEM_REG_DTM varchar2(16));\par
+\par
+alter table tb_mem\par
+add constraint uk_ssn unique(ssn);\par
+\par
+alter table tb_mem\par
+add constraint mem_cd_chk check(mem_cd in ('Silver', 'Gold', 'VIP', 'VVIP', 'Guest'));\par
+\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\par
+\b\fs28 create table tb_order(\b0\fs20\par
+   ord_no varchar(20) primary key,\par
+   mem_id varchar2(15) not null,\par
+   ord_amt number not null,\par
+   rcvr_nm varchar2(30) not null,\par
+   rcvr_tel_no varchar2(15) not null,\par
+   rcvr_addr varchar2(100) not null,\par
+   dlv_corp_no number not null,\par
+   dlv_req varchar2(50) not null,\par
+   ord_stat_cd varchar(2) not null,\par
+   ord_dtm date not null);\par
+\par
+alter table tb_order\par
+add constraint mem_id_fk foreign key(mem_id)\par
+references tb_mem(mem_id);\par
+\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\par
+INSERT INTO TB_PRODUCT(PRD_NO, PRD_NM, CATEGORY_NO, PRD_DES, SELL_PRC_UNIT, SELL_START_DT, SELL_END_DT, DLV_CONSTRAINT, AS_FLG, RETURN_FLG, IMG_ORG_FILE_NM, IMG_GEN_FILE_NM, REG_ID, REG_DTM) \par
+VALUES('PRD000000001', '\'c0\'a7\'b4\'cf\'b3\'d7\'c5\'a9\'b8\'ae\'bd\'ba', 'CAT000000005', '\'c2\'f8\'bf\'eb\'c7\'cf\'bc\'cc\'c0\'bb\'b6\'a7 \'b6\'b3\'be\'ee\'c1\'f6\'b4\'c2 \'b6\'f3\'c0\'ce\'c0\'cc \'c1\'a4\'b8\'bb \'bf\'b9\'bb\'b5\'bf\'e4', 39000, '20140201', '20141201', '\'b1\'b9\'b3\'bb \'b9\'e8\'bc\'db\'b8\'b8 \'b5\'cb\'b4\'cf\'b4\'d9.', 'Y', 'Y',  'acc_image1.jpg', 'acc_image1.jpg', 'admin', to_char(sysdate, 'YYYYMMDDHH24MISS'))  ;\par
+\par
+\b\fs28 create table tb_product(\par
+\b0\fs20    prd_no varchar(12) primary key,\par
+   prd_nm varchar2(60),\par
+   category_no varchar(3),\par
+   prd_des varchar2(1000),\par
+   sell_prc_unit number,\par
+   sell_start_dt date,\par
+   sell_end_dt date,\par
+   dlv_constraint varchar2(1000),\par
+   as_flg varchar(1),\par
+   return_flg varchar(1),\par
+   img_org_file_nm varchar2(60),\par
+   img_gen_file_nm varchar2(60),\par
+   reg_id date,\par
+   reg_dtm date);   \par
+\par
+\b\fs28 create table tb_order_product(\par
+\b0\fs20    ord_no varchar(20),\par
+   prd_no varchar(12),\par
+   qty number not null);\par
+\par
+alter table tb_order_product\par
+add constraint ord_no_fk foreign key(ord_no)\par
+references tb_order(ord_no);\par
+alter table tb_order_product\par
+add constraint prd_no_fk foreign key(prd_no)\par
+references tb_product(prd_no);\par
+\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\'a4\'d1\par
+\b\fs28\lang1042 INSERT INTO TB_MEM\b0\fs20 (MEM_ID, MEM_NM, MEM_CD, PWD, PWD_HINT, PWD_HINT_ANS, SSN, BIRTH_DT, MALE_FLG, TEL_NO, CELL_NO, ADDR, EMAIL, EMAIL_RCV_FLG, MEM_REG_DTM)      \par
+VALUES('bigdata1', '\'c4\'e1\'c0\'da\'b9\'dd', 'Gold', 'bigdata01', '\'c3\'ca\'b5\'ee\'c7\'d0\'b1\'b3\'b4\'c2?', '\'bf\'eb\'bf\'eb\'c3\'ca\'b5\'ee\'c7\'d0\'b1\'b3', '9111111234567', '19801010', 'M', '02-555-4567', '010-234-4567', '\'bc\'ad\'bf\'ef\'bd\'c3 \'bc\'ad\'c3\'ca\'b1\'b8 \'bc\'ad\'c3\'ca\'b5\'bf \'bc\'ad\'c3\'ca\'be\'c6\'c6\'c4\'c6\'ae 101\'b5\'bf 1001\'c8\'a3', 'abcd@email.com', 'N', to_char(sysdate, 'YYYYMMDDHH24MISS'))  ; \par
+\b\fs28\lang18 insert into tb_order(\b0\fs20 ord_no, mem_id, ord_amt, rcvr_nm, rcvr_tel_no, rcvr_addr,\par
+ dlv_corp_no, dlv_req, ord_stat_cd, ord_dtm)\par
+values('ORD00000000000000001','user01',1,'\lang1042\'c0\'e5\'b5\'bf\'b0\'c7','02-1234-5678','\'bc\'ad\'bf\'ef\'bd\'c3 \'bc\'ad\'bf\'ef\'b1\'b8 \'bc\'ad\'bf\'ef\'b7\'ce 64 123\'b5\'bf 1231\'c8\'a3',542,'\'b1\'fa\'c1\'f6\'c1\'f6\'be\'ca\'b0\'d4 \'c1\'b6\'bd\'c9','A1',sysdate);\par
+\b\fs28\lang18 insert into tb_order(\b0\fs20 ord_no, mem_id, ord_amt, rcvr_nm, rcvr_tel_no, rcvr_addr,\par
+ dlv_corp_no, dlv_req, ord_stat_cd, ord_dtm)\par
+values('ORD00000000000000002','user01',1,'\lang1042\'c0\'e5\'b5\'bf\'b0\'c7','02-1234-5678','\'bc\'ad\'bf\'ef\'bd\'c3 \'bc\'ad\'bf\'ef\'b1\'b8 \'bc\'ad\'bf\'ef\'b7\'ce 64 123\'b5\'bf 1231\'c8\'a3',542,'\'b1\'fa\'c1\'f6\'c1\'f6\'be\'ca\'b0\'d4 \'c1\'b6\'bd\'c9','A1',sysdate);\par
+\b\fs28\lang18 insert into tb_order(\b0\fs20 ord_no, mem_id, ord_amt, rcvr_nm, rcvr_tel_no, rcvr_addr,\par
+ dlv_corp_no, dlv_req, ord_stat_cd, ord_dtm)\par
+values('ORD00000000000000004','\lang1042 admin01\lang18 ',2,'\lang1042\'bf\'f8\'ba\'f3','02-1234-5678','\'c0\'ce\'c3\'b5\'b1\'a4\'bf\'aa\'bd\'c3 \'c1\'df\'b1\'b8 \'b9\'d9\'b4\'d9\'b7\'ce 64 123\'b5\'bf 1231\'c8\'a3',542,'\'b3\'c3\'b5\'bf\'bd\'c4\'c7\'b0','A1',sysdate);\par
+\b\fs28\lang18 insert into tb_order(\b0\fs20 ord_no, mem_id, ord_amt, rcvr_nm, rcvr_tel_no, rcvr_addr,\par
+ dlv_corp_no, dlv_req, ord_stat_cd, ord_dtm)\par
+values('ORD00000000000000006','bigdata1',1,'\lang1042\'b0\'ed\'b1\'e6\'b5\'bf','02-1234-5678','\'ba\'ce\'bb\'ea\'b1\'a4\'bf\'aa\'bd\'c3 \'bc\'ad\'b1\'b8 \'b9\'d9\'b4\'d9\'b7\'ce 64 123\'b5\'bf 1231\'c8\'a3',542,'\'b3\'c3\'b5\'bf','A1',sysdate);\par
+\b\fs28\lang18 insert into tb_order_product(\b0\fs20 ord_no, \lang1042  \lang18 prd_no, qty)\par
+values('ORD00000000000000004', 'PRD000000025', 1);\par
+\b\fs28 insert into tb_order_product(\b0\fs20 ord_no, \lang1042  \lang18 prd_no, qty)\par
+values('ORD00000000000000004', 'PRD000000001', 2);\par
+\b\fs28 insert into tb_order_product(\b0\fs20 ord_no, \lang1042  \lang18 prd_no, qty)\par
+values('ORD00000000000000002', 'PRD000000003', 10);\par
+\par
+\par
+\par
+\par
+   \par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\b\fs28 create table tb_board(\b0\fs20\par
+   mem_id  varchar2(15) primary key,\par
+   title   varchar2(60) not null,\par
+   text    varchar2(3000),\par
+   count   number,\par
+   del_flg varchar(1) not null,\par
+   reg_dtm date not null);\par
+\par
+\par
+\b\fs28 create table tb_reply(\b0\fs20\par
+   board_no number,\par
+   seq number primary key,\par
+   mem_id varchar2(15),\par
+   mem_nm varchar2(30),\par
+   reply varchar2(3000),\par
+   del_flg varchar(1),\par
+   reg_dtm date);\par
+\par
+\b\fs28 create table tb_code_group(\b0\fs20\par
+   cd_group_no varchar(3) primary key,\par
+   cd_group_nm varchar2(60),\par
+   cd_group_desc varchar2(100));\par
+\par
+\par
+\b\fs28 create table tb_code(\par
+\b0\fs20    cd_no varchar2(3) primary key,\par
+   cd_nm varchar2(30),\par
+   cd_group_no varchar(3));\par
+\par
+\par
+}
+ 

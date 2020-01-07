@@ -93,6 +93,8 @@ desc 내림차순
 
 
 
+## 레코드 삭제
+
 delete 테이블명;	: 모든 레코드 삭제
 
 delete from 테이블명	: 모든 레코드 삭제
@@ -113,3 +115,12 @@ SQL> delete
   5                     where id = 'jang');
 ```
 
+
+
+
+
+## 컬럼 데이터타입,크기 변경
+
+alter table 테이블명
+
+modify(컬럼명 데이터타입);
