@@ -1,4 +1,4 @@
-package exam01;
+package dl.exam01;
 
 public class LgTV implements TVInterface{
 	public void powerOn() {

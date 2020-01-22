@@ -1,4 +1,4 @@
-package exam01;
+package dl.exam01;
 
 public interface TVInterface {
 	public void powerOn();
