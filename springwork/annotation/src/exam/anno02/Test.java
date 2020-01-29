@@ -7,8 +7,8 @@ public class Test {
 	public static void main(String[] args) {
 		ApplicationContext factory =
 				new GenericXmlApplicationContext("config/bean.xml");
-		MyService myservice = 
-				factory.getBean("serviceImpl",MyService.class);
+		Service myservice = 
+				factory.getBean("service",Service.class);
 		myservice.test();
 	}
 }

@@ -1,8 +1,5 @@
 package book.exam.constructor;
 
-import org.springframework.stereotype.Service;
-
-@Service("sony")
 public class SonySpeaker implements Speaker {
 	public SonySpeaker() {
 		System.out.println("SonySpeaker°´Ã¼»ý¼º");
